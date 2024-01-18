@@ -15,11 +15,13 @@ this process is prone to human errors in the inputs and current tools do not det
 example, a manufacturer may enter 0 grams of sugar for a cookie product that contains sugar in
 its ingredient list. If left undetected, this false information could be a major problem for
 consumers such as diabetics.
+
 The goal of this project is to outline a solution to this problem. Using a machine learning
 approach and data from the USDA Branded Food Products Database, the existence of nutrients
 in a food can be predicted given their ingredient list. If the algorithm predicts that a nutrient is in
 a food, it can validate the entries for such nutrients and communicate inconsistencies to the users
 via the interface.
+
 Using an off-the-shelf natural language processing technique (word2vec), we mapped the
 list of ingredients into a 100-dimensional numerical space. This is a similar approach that a
 Slovene study used when predicting macronutrient values (carbohydrates, fat, protein, water) in a
@@ -30,6 +32,7 @@ meats or pastas appeared within a close proximity of one another. These numerica
 (input), along with the nutrient data from the USDA (ground-truth output), were used to train and
 test a classification model, specifically a multi-label classifier. Multi-label classification was
 used as it was able to make 12 binary predictions for an entire food’s nutrients.
+
 There were many different metrics that we used to evaluate our classification model such
 as ROC curves and accuracy (% measure of prediction accuracy for a nutrient). Majority of
 nutrient’s accuracies fell within 80%-95% and AUCs (area under the ROC curve) fell within
@@ -37,11 +40,13 @@ nutrient’s accuracies fell within 80%-95% and AUCs (area under the ROC curve) 
 (calories) which had an accuracy of about 99% and an AUC 0.945, most likely due to the fact
 that almost all foods have calories. The worst nutrient was Calcium which has an accuracy of
 0.72 and an AUC of 0.85 most likely due to the lack of calcium data for most foods.
+
 While these evaluation metrics show that the classification model was decently accurate
 in predicting individual nutrients, we observed a lower performance predicting all 12 nutrients in
 a given food. On average, 10.79 nutrients are predicted accurately meaning the model tends to
 get 1-2 nutrient predictions wrong per food. Further investigation revealed that our model could
 accurately predict every nutrient value accurately only 37% of the time.
+
 In the future we would like to further refine our model to predict the combination of
 nutrients accurately. This shortcoming of our model, if deployed in the real-world, could result in
 mistrust and frustration for users. Some ways that this could be implemented is to use more
